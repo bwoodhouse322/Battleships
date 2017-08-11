@@ -88,7 +88,11 @@ public class Board {
 						board[i + placementCoordinates[k][1] - 1][j +  placementCoordinates[k][0] - 1] = 1;
 					}
 					else{
+						if(user.getName().equals("AI")){
+						
+						}else{
 						System.out.println("SHIP OVERLAP, try new coordinates");
+						}
 						placementCoordinates= user.shipPlacement(placementCoordinates, shipList);
 						
 					}

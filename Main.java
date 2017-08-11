@@ -7,7 +7,7 @@ public class Main {
 		ArrayList<Ship> shipList = new ArrayList<>();
 		
 		int coordinates[] ;
-		
+		int howManyPlayers =1;
 	
 		//Create boards
 		Board board1= new Board(9,9);
@@ -21,6 +21,7 @@ public class Main {
 		//Create users
 		User user1= new User("ben",true,false,ship1.getLife()+ship2.getLife()+ship3.getLife()+ship4.getLife());
 		User user2= new User("leon",false,false,ship1.getLife()+ship2.getLife()+ship3.getLife()+ship4.getLife());
+		AI AI= new AI("AI",false,false,ship1.getLife()+ship2.getLife()+ship3.getLife()+ship4.getLife(),1);
 		
 		shipList.add(ship1);
 		shipList.add(ship2);
@@ -28,7 +29,7 @@ public class Main {
 		shipList.add(ship4);
 		int placementCoordinates[][] = new int[shipList.size()][shipList.size()];
 		
-		
+		if(howManyPlayers== 2){
 		
 		placementCoordinates= user1.shipPlacement(placementCoordinates, shipList);
 		board1.create(board1,board1.length,board1.width, shipList, placementCoordinates, user1);
@@ -49,7 +50,35 @@ public class Main {
 			board2.attackEvent(coordinates, board1, user1, user2);
 		}while (user1.isHasWon()== false && user2.isHasWon() == false);
 		
+		
 		System.out.println("GAME OVER");
+		
+		} else{
+			
+
+			placementCoordinates= user1.shipPlacement(placementCoordinates, shipList);
+			board1.create(board1,board1.length,board1.width, shipList, placementCoordinates, user1);
+			
+			
+			
+			placementCoordinates= AI.shipPlacement(placementCoordinates, shipList);
+			board2.create(board2,board1.length,board1.width, shipList, placementCoordinates,AI);
+			
+			
+			do{
+				coordinates = user1.turn(user1);
+				board1.attackEvent(coordinates, board2,AI,user1);
+				if(user1.isHasWon()){
+					continue;
+				}
+				coordinates = AI.turn(AI);
+				board2.attackEvent(coordinates, board1, user1, AI);
+			}while (user1.isHasWon()== false && user2.isHasWon() == false);
+			
+			System.out.println("GAME OVER");
+			
+		}
+		
 	}
 	
 	public  int[][] shipPlacement(int[][] placementCoordinates){
