@@ -8,7 +8,7 @@ public class Main {
 		
 		int coordinates[] ;
 		int howManyPlayers =1;
-	
+		
 		//Create boards
 		Board board1= new Board(9,9);
 		Board board2= new Board(9,9);

@@ -110,6 +110,7 @@ public class Board {
 
 	// 0 open water, 1 is ship and 2 is hit ship
 	public void attackEvent(int[] coordinates, Board board, User userDefend, User userAttack) {
+
 		int[][] boardie = board.getBoardState();
 		if (boardie[coordinates[1] - 1][coordinates[0] - 1] == 1) {
 			boardie[coordinates[1] - 1][coordinates[0] - 1] = 2;
@@ -125,8 +126,15 @@ public class Board {
 				return;
 
 			}
-
+			
+			if(userAttack.getName().equals("AI")){
+				AI AI = (AI)userAttack; 
+				coordinates = AI.turn(AI);
+				
+			}else{
 			coordinates = userAttack.turn(userAttack);
+			}
+			
 			board.attackEvent(coordinates, board, userDefend, userAttack);
 		} else {
 			boardie[coordinates[1] - 1][coordinates[0] - 1] = 3;
@@ -136,5 +144,8 @@ public class Board {
 		}
 
 	}
-
+	
+	
+	
+	
 }
