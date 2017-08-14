@@ -40,7 +40,7 @@ public class Board {
 		int a = board.getLength();
 		int b = board.getWidth();
 
-		System.out.print("____1________2________3________4________6________7________8________9________");
+		System.out.print("____1________2________3________4________5________6________7________8________9");
 		System.out.println();
 
 		for (int j = 0; j < b; j++) {
@@ -65,7 +65,7 @@ public class Board {
 		int[][] board = new int[a][b];
 		
 
-		System.out.print("____1________2________3________4________6________7________8________9________");
+		System.out.print("____1________2________3________4________5________6________7________8________9");
 		System.out.println();
 		for (int j = 0; j < b; j++) {
 			System.out.print((j + 1) + "|");

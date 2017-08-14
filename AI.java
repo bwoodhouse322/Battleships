@@ -17,10 +17,10 @@ public class AI extends User {
 		
 		for(int i=0; i < placementCoordinates.length;i++){
 			//row
-			placementCoordinates[i][0] = ThreadLocalRandom.current().nextInt(1,8-shipList.get(i).getLength());
+			placementCoordinates[i][0] = ThreadLocalRandom.current().nextInt(1,8-shipList.get(i).getWidth());
 					
 			//column
-			placementCoordinates[i][1] = ThreadLocalRandom.current().nextInt(1,8-shipList.get(i).getWidth());
+			placementCoordinates[i][1] = ThreadLocalRandom.current().nextInt(1,8-shipList.get(i).getLength());
 		}
 		return placementCoordinates;
 		
